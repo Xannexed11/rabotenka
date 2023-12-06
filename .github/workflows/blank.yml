@@ -18,14 +18,5 @@ jobs:
           password: ${{ secrets.GITHUB_TOKEN }}
       - run: docker build -t ghcr.io/xannexed11/python-app:1.0 .
       - run: docker push ghcr.io/xannexed11/python-app:1.0
-  deploy:
-    runs-on: ubuntu-latest
-    needs: [build]
-    steps:
-      - name: Login to GitHub Container Registry
-        uses: docker/login-action@v3
-        with:
-          registry: ghcr.io
-          username: ${{ github.actor }}
-          password: ${{ secrets.GITHUB_TOKEN }}
-      - run: docker run ghcr.io/xannexed11/python-app:1.0
+      - run: ssh -o "StrictHostKeyChecking no" 'xannexed11-rabotenka-r5h6zmkx761#bgwbxWdrnvoDCmN8mLz..ECaOBfaKZSI@xannexed11-rabotenka-r5h6zmkx761.ssh.ws-eu106.gitpod.io' 'CD /workspace/rabotenka && docker compose pull && docker compose up -d'
+  
