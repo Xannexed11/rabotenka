@@ -16,10 +16,10 @@ jobs:
           registry: ghcr.io
           username: ${{ github.actor }}
           password: ${{ secrets.GITHUB_TOKEN }}
-      - run: docker build -t ghcr.io/xannexed11/rabotenka:1.0 ./python-program
-      - run: docker push ghcr.io/xannexed11/rabotenka:1.0
-      - run: docker build -t ghcr.io/xannexed11/rabotenka:1.0 ./node-program
-      - run: docker push ghcr.io/xannexed11/rabotenka:1.0
+      - run: docker build -t ghcr.io/xannexed11/python-prog:1.0 ./python-program
+      - run: docker push ghcr.io/xannexed11/python-prog:1.0
+      - run: docker build -t ghcr.io/xannexed11/node-prog:1.0 ./node-program
+      - run: docker push ghcr.io/xannexed11/node-prog:1.0
       - run: ssh -o "StrictHostKeyChecking no" 'xannexed11-rabotenka-cjog29f2wc4#PWDO4Mtng2jz7D-6aNhYU69bjR7-iXLh@xannexed11-rabotenka-cjog29f2wc4.ssh.ws-eu106.gitpod.io' 'cd /workspace/rabotenka && docker compose pull && docker compose up -d'
   notify-success: 
     runs-on: ubuntu-latest 
